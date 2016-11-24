@@ -7,8 +7,6 @@ public class Sphere extends MasterGeometry {
 
 	private PApplet app;
 
-	private PVector pos;
-	// private PVector vel;
 	private PVector acel;
 
 	private float r;
@@ -17,12 +15,9 @@ public class Sphere extends MasterGeometry {
 	private float maxForce;
 	private float prof;
 
-	public Sphere(PApplet app, PVector pos, float tam) {
-		super(app, pos, tam);
+	public Sphere(PApplet app, PVector pos, float tam, float theta) {
+		super(app, pos, tam, theta);
 		this.app = app;
-
-		pos = new PVector(app.random(50, app.width - 50), app.random(50, app.height - 50), app.random(-1000, -2450));
-		this.pos = pos;
 
 		escala = 4;
 
@@ -45,15 +40,17 @@ public class Sphere extends MasterGeometry {
 		r += 0.005f;
 		app.pushMatrix();
 		app.translate(pos.x, pos.y, pos.z);
+		app.rotateZ((r * 2) + theta);
+		app.pushMatrix();
+		app.translate(300, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);
-		app.fill(360);
-		app.stroke(360, 100);
 		app.sphere(tam);
 		app.popMatrix();
-		mover();
-		orbita();
+		app.popMatrix();
+//		mover();
+//		orbita();
 	}
 
 	private void orbita() {

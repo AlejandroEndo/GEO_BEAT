@@ -1,4 +1,5 @@
 package instrumentos;
+
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PVector;
@@ -7,8 +8,6 @@ public class Piramide extends MasterGeometry {
 
 	private PApplet app;
 
-	private PVector pos;
-//	private PVector vel;
 	private PVector acel;
 
 	private float r;
@@ -18,12 +17,9 @@ public class Piramide extends MasterGeometry {
 
 	private float prof;
 
-	public Piramide(PApplet app, PVector pos, float tam) {
-		super(app, pos, tam);
+	public Piramide(PApplet app, PVector pos, float tam, float theta) {
+		super(app, pos, tam, theta);
 		this.app = app;
-
-		pos = new PVector(app.random(50, app.width - 50), app.random(50, app.height - 50), app.random(-1000, -2450));
-		this.pos = pos;
 
 		escala = 5;
 
@@ -45,11 +41,14 @@ public class Piramide extends MasterGeometry {
 		r += 0.005f;
 		app.pushMatrix();
 		app.translate(pos.x, pos.y, pos.z);
+		app.stroke(360);
+		app.fill(360);
+		app.rotateZ((r * 2) + theta);
+		app.pushMatrix();
+		app.translate(300, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);
-		app.stroke(360);
-		app.fill(360);
 		app.beginShape(PConstants.TRIANGLE);
 
 		// Caras de la piramide
@@ -77,11 +76,12 @@ public class Piramide extends MasterGeometry {
 		app.vertex(tam, tam, -tam);
 		app.vertex(-tam, tam, -tam);
 		app.endShape();
-
+		
+		app.popMatrix();
 		app.popMatrix();
 
-		orbita();
-		mover();
+//		orbita();
+//		mover();
 	}
 
 	@Override
@@ -146,7 +146,7 @@ public class Piramide extends MasterGeometry {
 			atomico();
 			app.popMatrix();
 			app.noFill();
-//			app.ellipse(0, 0, 500, 500);
+			// app.ellipse(0, 0, 500, 500);
 			app.popMatrix();
 		}
 	}
@@ -198,14 +198,14 @@ public class Piramide extends MasterGeometry {
 	public PVector getPos() {
 		return pos;
 	}
-	
-	 @Override
-	 public void setVel(PVector vel) {
-	 this.vel=vel;
-	 }
-	
-	 @Override
-	 public PVector getVel() {
-	 return vel;
-	 }
+
+	@Override
+	public void setVel(PVector vel) {
+		this.vel = vel;
+	}
+
+	@Override
+	public PVector getVel() {
+		return vel;
+	}
 }

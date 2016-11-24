@@ -17,7 +17,7 @@ public class Central {
 	// cambio de color
 	private float off;
 	// radio
-	private float r;
+	private float tam;
 
 	// Rotacion de la esfera
 	private float angle;
@@ -38,13 +38,13 @@ public class Central {
 		a = 1;
 		b = 1;
 
-		r = 200;
+		tam = 200;
 	}
 
 	public void draw() {
 		angle +=0.005f;
 		app.pushMatrix();
-		app.fill(255);
+		app.fill(360);
 		app.noStroke();
 		app.translate(app.width / 2, app.height / 2, -500);
 		app.rotateX(angle);
@@ -67,9 +67,9 @@ public class Central {
 				float lon = PApplet.map(j, 0, total, -PConstants.PI, PConstants.PI);
 				float rUno = superShape(lon, m, 0.20f, 1.70f, 1.70f);
 
-				float x = r * rUno * PApplet.cos(lon) * rDos * PApplet.cos(lat);
-				float y = r * rUno * PApplet.sin(lon) * rDos * PApplet.cos(lat);
-				float z = r * rDos * PApplet.sin(lat);
+				float x = tam * rUno * PApplet.cos(lon) * rDos * PApplet.cos(lat);
+				float y = tam * rUno * PApplet.sin(lon) * rDos * PApplet.cos(lat);
+				float z = tam * rDos * PApplet.sin(lat);
 
 				globe[i][j] = new PVector(x, y, z);
 			}
@@ -114,4 +114,38 @@ public class Central {
 		float r = PApplet.pow(tTres, -1 / nUno);
 		return r;
 	}
+
+	public PVector[][] getGlobe() {
+		return globe;
+	}
+
+	public void setGlobe(PVector[][] globe) {
+		this.globe = globe;
+	}
+
+	public float getTam() {
+		return tam;
+	}
+
+	public void setTam(float tam) {
+		this.tam = tam;
+	}
+
+	public float getAngle() {
+		return angle;
+	}
+
+	public void setAngle(float angle) {
+		this.angle = angle;
+	}
+
+	public float getChange() {
+		return change;
+	}
+
+	public void setChange(float change) {
+		this.change = change;
+	}
+	
+	
 }

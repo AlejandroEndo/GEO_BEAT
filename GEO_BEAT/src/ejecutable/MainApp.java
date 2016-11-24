@@ -1,10 +1,13 @@
 package ejecutable;
 
+import peasy.PeasyCam;
 import processing.core.PApplet;
 
 public class MainApp extends PApplet {
 
 	private Logica logica;
+	
+	private PeasyCam cam;
 	
 	public static void main(String[] args) {
 		PApplet.main("ejecutable.MainApp");
@@ -18,13 +21,16 @@ public class MainApp extends PApplet {
 	
 	@Override
 	public void setup() {
+//		cam = new PeasyCam(this, 500);
+		colorMode(HSB,360,100,100);
 		logica = new Logica(this);
+		background(0);
 	}
 	
 	@Override
 	public void draw() {
-		background(0);
-		lights();
+//		background(0);
+		//lights();
 		logica.draw();
 	}
 }

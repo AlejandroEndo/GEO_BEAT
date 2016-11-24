@@ -23,5 +23,6 @@
 	<classpathentry kind="lib" path="library/mp3spi1.9.5.jar"/>
 	<classpathentry kind="lib" path="library/tritonus_aos.jar"/>
 	<classpathentry kind="lib" path="library/tritonus_share.jar"/>
+	<classpathentry kind="lib" path="library/peasycam.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

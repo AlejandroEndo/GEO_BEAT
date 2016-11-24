@@ -7,8 +7,6 @@ public class Diamond extends MasterGeometry {
 
 	private PApplet app;
 
-	private PVector pos;
-//	private PVector vel;
 	private PVector acel;
 
 	private float r;
@@ -19,12 +17,9 @@ public class Diamond extends MasterGeometry {
 
 	private float prof;
 
-	public Diamond(PApplet app, PVector pos, float tam) {
-		super(app, pos, tam);
+	public Diamond(PApplet app, PVector pos, float tam, float theta) {
+		super(app, pos, tam, theta);
 		this.app = app;
-
-		pos = new PVector(app.random(50, app.width - 50), app.random(50, app.height - 50), app.random(-1000, -2450));
-		this.pos = pos;
 
 		escala = 5;
 
@@ -90,8 +85,8 @@ public class Diamond extends MasterGeometry {
 
 		app.popMatrix();
 
-		orbita();
-		mover();
+//		orbita();
+//		mover();
 
 	}
 

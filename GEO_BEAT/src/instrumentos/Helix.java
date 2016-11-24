@@ -24,8 +24,8 @@ public class Helix extends MasterGeometry {
 	private float angle;
 	private float radius;
 
-	public Helix(PApplet app, PVector pos, float tam) {
-		super(app, pos, tam);
+	public Helix(PApplet app, PVector pos, float tam, float theta) {
+		super(app, pos, tam, theta);
 		this.app = app;
 
 		pos = new PVector(app.random(50, app.width - 50), app.random(50, app.height - 50), app.random(-1000, -2450));

@@ -1,4 +1,5 @@
 package instrumentos;
+
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -10,12 +11,16 @@ public abstract class MasterGeometry {
 	protected PVector vel;
 
 	protected float tam;
+	protected float theta;
 
-	public MasterGeometry(PApplet app, PVector pos, float tam) {
+	public MasterGeometry(PApplet app, PVector pos, float tam, float theta) {
 		this.app = app;
 		this.pos = pos;
 		this.tam = tam;
-		
+		this.theta = theta;
+
+		pos = new PVector();
+
 	}
 
 	public abstract void draw();
@@ -37,7 +42,7 @@ public abstract class MasterGeometry {
 	public void setVel(PVector vel) {
 		this.vel = vel;
 	}
-	
+
 	public PVector getVel() {
 		return vel;
 	}
