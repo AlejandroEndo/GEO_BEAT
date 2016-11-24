@@ -44,6 +44,7 @@ public class Piramide extends MasterGeometry {
 //		app.rotateX((r * -3) + theta);
 		app.rotateY((r * -3) + theta);
 		app.rotateZ((r * -3) + theta);
+		puntos();
 		app.pushMatrix();
 		app.translate(250, 0);
 		app.rotateX(r);
@@ -80,113 +81,16 @@ public class Piramide extends MasterGeometry {
 		app.popMatrix();
 		app.popMatrix();
 
-//		orbita();
-//		mover();
 	}
 
 	@Override
-	public void mover() {
-		vel.add(acel);
-		vel.limit(velMax);
-		pos.add(vel);
-		acel.mult(0);
-
-		if (pos.x > app.width - 100) {
-			PVector desired = new PVector(velMax * -1, vel.y, vel.z);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
+	public void puntos() {
+		app.strokeWeight(grosor);
+		for (int i = 0; i < 250; i++) {
+			app.point(i, 0);
 		}
-
-		if (pos.x < 100) {
-			PVector desired = new PVector(velMax, vel.y, vel.z);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
-
-		if (pos.y > app.height - 100) {
-			PVector desired = new PVector(vel.x, velMax * -1, vel.z);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
-
-		if (pos.y < 100) {
-			PVector desired = new PVector(vel.x, velMax, vel.z);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
-
-		if (pos.z < prof + 100) {
-			PVector desired = new PVector(vel.x, vel.y, velMax);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
-
-		if (pos.z > -100 - 100) {
-			PVector desired = new PVector(vel.x, vel.y, velMax * -1);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
+//		 app.strokeWeight(1);
 	}
-
-	private void orbita() {
-		for (int i = 0; i < 8; i++) {
-			app.pushMatrix();
-			app.translate(pos.x, pos.y, pos.z);
-			app.rotateX(72 * i + r);
-			app.rotateY(72 * i - r);
-			app.rotateZ(72 * i + r);
-			app.pushMatrix();
-			app.rotateZ(72 * i + r);
-			atomico();
-			app.popMatrix();
-			app.noFill();
-			// app.ellipse(0, 0, 500, 500);
-			app.popMatrix();
-		}
-	}
-
-	private void atomico() {
-		app.pushMatrix();
-		app.fill(0);
-		// x - 350, y - 350
-		app.translate(tam * 2, 0, 0);
-		// app.rotateZ(r + 5f + tam * 0.5f);
-
-		app.beginShape(PConstants.TRIANGLE);
-		// Caras de la piramide
-		app.vertex(-tam / escala, -tam / escala, -tam / escala);
-		app.vertex(tam / escala, -tam / escala, -tam / escala);
-		app.vertex(0, 0, tam / escala);
-
-		app.vertex(tam / escala, -tam / escala, -tam / escala);
-		app.vertex(tam / escala, tam / escala, -tam / escala);
-		app.vertex(0, 0, tam / escala);
-
-		app.vertex(tam / escala, tam / escala, -tam / escala);
-		app.vertex(-tam / escala, tam / escala, -tam / escala);
-		app.vertex(0, 0, tam / escala);
-
-		app.vertex(-tam / escala, tam / escala, -tam / escala);
-		app.vertex(-tam / escala, -tam / escala, -tam / escala);
-		app.vertex(0, 0, tam / escala);
-		app.endShape();
-
-		// Base de la piramide
-		app.beginShape(PConstants.QUADS);
-		app.vertex(-tam / escala, -tam / escala, -tam / escala);
-		app.vertex(tam / escala, -tam / escala, -tam / escala);
-		app.vertex(tam / escala, tam / escala, -tam / escala);
-		app.vertex(-tam / escala, tam / escala, -tam / escala);
-		app.endShape();
-		app.popMatrix();
-	}
-
 	public float getTam() {
 		return tam;
 	}
@@ -209,9 +113,4 @@ public class Piramide extends MasterGeometry {
 		return vel;
 	}
 
-	@Override
-	public void puntos() {
-		// TODO Auto-generated method stub
-		
-	}
 }

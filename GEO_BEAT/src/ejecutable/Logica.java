@@ -28,6 +28,7 @@ public class Logica {
 	private Music musica;
 
 	private ArrayList<MasterGeometry> instrumentos = new ArrayList<>();
+	private ArrayList<Escenario> electro = new ArrayList<>();
 
 	private int tam;
 
@@ -56,31 +57,43 @@ public class Logica {
 	}
 
 	public void draw() {
-		// fondo.draw();
+		musica.vals();
+		app.pushMatrix();
+		app.translate(0, 0, -200);
+		fondo.draw();
+		fondo.setArcoProf(PApplet.map(musica.getPromedio(), 0, 93, 0, 200));
+		app.popMatrix();
 		app.directionalLight(0, 100, 100, 0, 0, -1);
 		central.draw();
+
+		electro.add(
+				new Escenario(app, app.width + 200, PApplet.map(musica.getPromedio(), 0, 93, app.height, 0), -1000));
+
+		for (int i = 0; i < electro.size(); i++) {
+			electro.get(i).electro();
+			if (electro.get(i).getZ() >= 10) {
+				electro.remove(i);
+			}
+		}
+
+		float grosor = PApplet.map(musica.getPromedio(), 0, 93, 1, 10);
+
+		System.out.println(musica.getPromedio());
+
+		if (central.getM() > 0) {
+			central.setM(central.getM() - 0.5f);
+		}
+		if (central.getM() < 10) {
+			// central.setM(PApplet.map(musica.getPromedio(), 0, 93, 4, 6));
+			central.setM(central.getM() + PApplet.map(musica.getPromedio(), 0, 93, 0, 2));
+		}
 
 		for (int i = 0; i < instrumentos.size(); i++) {
 			MasterGeometry m = instrumentos.get(i);
 			m.draw();
 			m.setR(m.getR() + 0.005f);
+			m.setGrosor(grosor);
 		}
 
-		for (int i = 0; i < instrumentos.size(); i++) {
-			MasterGeometry m = instrumentos.get(i);
-
-			app.line(m.getPos().x, m.getPos().y, m.getPos().z, app.width / 2, app.height / 2, -500);
-
-			// float distancia = PApplet.dist(m.getPos().x, m.getPos().y,
-			// m.getPos().z, app.width / 2, app.height / 2,
-			// -500);
-			// app.strokeWeight(10);
-			// for (int j = 0; j < 6; j++) {
-			// float nuevaX = m.getPos().x / (distancia - j);
-			// float nuevaY = m.getPos().y / (distancia - j);
-			// float nuevaZ = m.getPos().z / (distancia - j);
-			// app.point(nuevaX, nuevaY, nuevaZ);
-			// }
-		}
 	}
 }

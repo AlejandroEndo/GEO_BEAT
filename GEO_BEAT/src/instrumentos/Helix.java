@@ -1,4 +1,5 @@
 package instrumentos;
+
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -11,7 +12,7 @@ public class Helix extends MasterGeometry {
 	private PVector vertices[];
 	private PVector verticesDos[];
 
-//	private float r;
+	// private float r;
 	private float escala;
 	private float velMax;
 	private float maxForce;
@@ -49,13 +50,14 @@ public class Helix extends MasterGeometry {
 	@Override
 	public void draw() {
 
-//		r += 0.005f;
+		// r += 0.005f;
 		app.pushMatrix();
 		app.translate(pos.x, pos.y, pos.z);
 		app.fill(360, 100);
-//		app.rotateX((r * 2) + theta);
+		// app.rotateX((r * 2) + theta);
 		app.rotateY((r * 2) + theta);
 		app.rotateZ((r * 2) + theta);
+		puntos();
 		app.pushMatrix();
 		app.translate(500, 0);
 		app.rotateX(r);
@@ -65,8 +67,6 @@ public class Helix extends MasterGeometry {
 		app.popMatrix();
 		app.popMatrix();
 
-//		mover();
-//		orbita();
 	}
 
 	private void helixDraw() {
@@ -103,116 +103,13 @@ public class Helix extends MasterGeometry {
 
 	}
 
-	private void helixAtom() {
-		vertices = new PVector[pts + 1];
-		verticesDos = new PVector[pts + 1];
-
-		for (int i = 0; i <= pts; i++) {
-			vertices[i] = new PVector();
-			verticesDos[i] = new PVector();
-			vertices[i].x = ((tam - 10) / escala) + PApplet.sin(PApplet.radians(angle)) * radius - 10;
-			vertices[i].z = PApplet.cos(PApplet.radians(angle)) * radius - 10 - segments / 2;
-			angle += 360.0 / pts;
-		}
-
-		// draw toroid
-		latheAngle = 0;
-		for (int i = 0; i <= segments; i++) {
-			app.beginShape(PApplet.QUAD_STRIP);
-			for (int j = 0; j <= pts; j++) {
-				if (i > 0) {
-					app.vertex(verticesDos[j].x, verticesDos[j].y, verticesDos[j].z);
-				}
-				verticesDos[j].x = PApplet.cos(PApplet.radians(latheAngle)) * vertices[j].x;
-				verticesDos[j].y = PApplet.sin(PApplet.radians(latheAngle)) * vertices[j].x;
-				verticesDos[j].z = vertices[j].z;
-				// optional helix offset
-				// vertices[j].z+=helixOffset;
-				app.vertex(verticesDos[j].x, verticesDos[j].y, verticesDos[j].z);
-			}
-			// create extra rotation for helix
-			latheAngle += 720.0 / segments;
-			app.endShape();
-		}
-
-	}
-
-	private void orbita() {
-		for (int i = 0; i < 8; i++) {
-			app.pushMatrix();
-			app.stroke(360);
-			app.translate(pos.x, pos.y, pos.z);
-			app.rotateX(72 * i + r);
-			app.rotateY(72 * i - r);
-			app.rotateZ(72 * i + r);
-			app.pushMatrix();
-			app.rotateZ(72 * i + r + tam * 0.05f);
-			atomico();
-			app.popMatrix();
-			app.noFill();
-			// app.ellipse(0, 0, 500, 500);
-			app.popMatrix();
-		}
-	}
-
-	private void atomico() {
-		app.pushMatrix();
-		app.fill(0);
-		// x - 350, y - 350
-		app.translate(tam * 2, 0, 0);
-		// app.rotateZ(r + 5f + tam * 0.5f);
-		helixAtom();
-		app.popMatrix();
-	}
-
 	@Override
-	public void mover() {
-		vel.add(acel);
-		vel.limit(velMax);
-		pos.add(vel);
-		acel.mult(0);
-
-		if (pos.x > app.width - 100) {
-			PVector desired = new PVector(velMax * -1, vel.y, vel.z);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
+	public void puntos() {
+		app.strokeWeight(grosor);
+		for (int i = 0; i < 500; i++) {
+			app.point(i, 0);
 		}
-
-		if (pos.x < 100) {
-			PVector desired = new PVector(velMax, vel.y, vel.z);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
-
-		if (pos.y > app.height - 100) {
-			PVector desired = new PVector(vel.x, velMax * -1, vel.z);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
-
-		if (pos.y < 100) {
-			PVector desired = new PVector(vel.x, velMax, vel.z);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
-
-		if (pos.z < prof + 100) {
-			PVector desired = new PVector(vel.x, vel.y, velMax);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
-
-		if (pos.z > -100 - 100) {
-			PVector desired = new PVector(vel.x, vel.y, velMax * -1);
-			PVector director = PVector.sub(desired, vel);
-			director.limit(maxForce);
-			acel.add(director);
-		}
+//		app.strokeWeight(1);
 	}
 
 	public void setTam(float tam) {
@@ -237,9 +134,4 @@ public class Helix extends MasterGeometry {
 		return vel;
 	}
 
-	@Override
-	public void puntos() {
-		// TODO Auto-generated method stub
-		
-	}
 }

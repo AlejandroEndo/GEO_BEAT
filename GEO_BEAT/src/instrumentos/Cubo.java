@@ -1,6 +1,7 @@
 package instrumentos;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 
 public class Cubo extends MasterGeometry {
@@ -58,9 +59,11 @@ public class Cubo extends MasterGeometry {
 
 	@Override
 	public void puntos() {
+		app.strokeWeight(grosor);
 		for (int i = 0; i < 250; i++) {
 			app.point(i, 0);
 		}
+//		 app.strokeWeight(1);
 	}
 
 	public void setTam(float tam) {
@@ -83,12 +86,6 @@ public class Cubo extends MasterGeometry {
 	@Override
 	public PVector getVel() {
 		return vel;
-	}
-
-	@Override
-	public void mover() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

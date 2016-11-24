@@ -21,7 +21,7 @@ public class Central {
 
 	// Rotacion de la esfera
 	private float angle;
-	
+
 	private float change;
 
 	// variables formula super shape
@@ -31,8 +31,8 @@ public class Central {
 
 	public Central(PApplet app) {
 		this.app = app;
-		
-		total = 100;
+
+		total = 50;
 
 		globe = new PVector[total + 1][total + 1];
 
@@ -43,10 +43,10 @@ public class Central {
 	}
 
 	public void draw() {
-		angle +=0.005f;
+		angle += 0.005f;
 		app.pushMatrix();
 		app.fill(360);
-		app.noStroke();
+//		app.noStroke();
 		app.translate(app.width / 2, app.height / 2, -500);
 		app.rotateX(angle);
 		app.rotateZ(angle);
@@ -55,7 +55,7 @@ public class Central {
 
 		// Variacion de la animacion---------------------------
 		change += 0.01f;// velocidad de animacion
-		m = PApplet.map(PApplet.sin(change), -1, 1, 4, 10);
+		// m = PApplet.map(PApplet.sin(change), -1, 1, 4, 10);
 		// ----------------------------------------------------
 
 		// Calcular valores para etablecer los puntos de la esfera
@@ -147,6 +147,13 @@ public class Central {
 	public void setChange(float change) {
 		this.change = change;
 	}
-	
-	
+
+	public float getM() {
+		return m;
+	}
+
+	public void setM(float m) {
+		this.m = m;
+	}
+
 }

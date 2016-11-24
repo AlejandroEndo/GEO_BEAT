@@ -13,7 +13,7 @@ public abstract class MasterGeometry {
 	protected float tam;
 	protected float theta;
 	protected float r;
-	protected float
+	protected float grosor;
 
 	public MasterGeometry(PApplet app, PVector pos, float tam, float theta) {
 		this.app = app;
@@ -27,8 +27,6 @@ public abstract class MasterGeometry {
 
 	public abstract void draw();
 
-	public abstract void mover();
-	
 	public abstract void puntos();
 
 	public PVector getPos() {
@@ -57,6 +55,14 @@ public abstract class MasterGeometry {
 
 	public void setR(float r) {
 		this.r = r;
+	}
+
+	public float getGrosor() {
+		return grosor;
+	}
+
+	public void setGrosor(float grosor) {
+		this.grosor = grosor;
 	}
 
 }

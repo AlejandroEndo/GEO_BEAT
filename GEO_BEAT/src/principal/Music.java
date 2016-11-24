@@ -1,4 +1,5 @@
 package principal;
+
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
@@ -31,7 +32,7 @@ public class Music {
 
 		song = minim.loadFile("../data/fool.wav");
 
-		song.loop();
+		 song.loop();
 
 		fft = new FFT(song.bufferSize(), song.sampleRate());
 	}
@@ -50,6 +51,7 @@ public class Music {
 		if (promedio < min && promedio != 0) {
 			min = promedio;
 		}
+
 		if (promedio > max) {
 			max = promedio;
 		}

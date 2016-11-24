@@ -42,6 +42,7 @@ public class Cruz extends MasterGeometry {
 		app.rotateX((r * 2) + theta);
 		app.rotateY((r * 2) + theta);
 		app.rotateZ((r * 2) + theta);
+		puntos();
 		app.pushMatrix();
 		app.translate(500, 0);
 		app.rotateX(r);
@@ -53,9 +54,12 @@ public class Cruz extends MasterGeometry {
 	}
 
 	@Override
-	public void mover() {
-		// TODO Auto-generated method stub
-
+	public void puntos() {
+		app.strokeWeight(grosor);
+		for (int i = 0; i < 500; i++) {
+			app.point(i, 0);
+		}
+//		app.strokeWeight(1);
 	}
 
 	private void construirCruz() {
@@ -228,12 +232,6 @@ public class Cruz extends MasterGeometry {
 		///////////////////////////////////////////////
 
 		app.endShape();
-	}
-
-	@Override
-	public void puntos() {
-		// TODO Auto-generated method stub
-
 	}
 
 }
