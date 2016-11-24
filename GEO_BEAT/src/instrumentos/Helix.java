@@ -11,7 +11,7 @@ public class Helix extends MasterGeometry {
 	private PVector vertices[];
 	private PVector verticesDos[];
 
-	private float r;
+//	private float r;
 	private float escala;
 	private float velMax;
 	private float maxForce;
@@ -49,13 +49,15 @@ public class Helix extends MasterGeometry {
 	@Override
 	public void draw() {
 
-		r += 0.005f;
+//		r += 0.005f;
 		app.pushMatrix();
 		app.translate(pos.x, pos.y, pos.z);
 		app.fill(360, 100);
+//		app.rotateX((r * 2) + theta);
+		app.rotateY((r * 2) + theta);
 		app.rotateZ((r * 2) + theta);
 		app.pushMatrix();
-		app.translate(400, 0);
+		app.translate(500, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);
@@ -233,5 +235,11 @@ public class Helix extends MasterGeometry {
 	@Override
 	public PVector getVel() {
 		return vel;
+	}
+
+	@Override
+	public void puntos() {
+		// TODO Auto-generated method stub
+		
 	}
 }

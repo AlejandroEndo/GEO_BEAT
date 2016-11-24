@@ -9,7 +9,7 @@ public class Sphere extends MasterGeometry {
 
 	private PVector acel;
 
-	private float r;
+//	private float r;
 	private float escala;
 	private float velMax;
 	private float maxForce;
@@ -34,12 +34,14 @@ public class Sphere extends MasterGeometry {
 	@Override
 	public void draw() {
 
-		r += 0.005f;
+//		r += 0.005f;
 		app.pushMatrix();
 		app.translate(pos.x, pos.y, pos.z);
-		app.rotateZ((r * 2) + theta);
+		app.rotateX((r * -3) + theta);
+		app.rotateY((r * -3) + theta);
+//		app.rotateZ((r * -3) + theta);
 		app.pushMatrix();
-		app.translate(200, 0);
+		app.translate(250, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);
@@ -148,5 +150,11 @@ public class Sphere extends MasterGeometry {
 	@Override
 	public PVector getVel() {
 		return vel;
+	}
+
+	@Override
+	public void puntos() {
+		// TODO Auto-generated method stub
+		
 	}
 }

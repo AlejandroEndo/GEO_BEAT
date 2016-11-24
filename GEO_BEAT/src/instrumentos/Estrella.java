@@ -10,7 +10,7 @@ public class Estrella extends MasterGeometry {
 
 	private PVector acel;
 
-	private float r;
+//	private float r;
 	private float escala;
 
 	private float velMax;
@@ -35,14 +35,16 @@ public class Estrella extends MasterGeometry {
 	}
 
 	public void draw() {
-		r += 0.005f;
+//		r += 0.005f;
 		app.pushMatrix();
 		app.translate(pos.x, pos.y, pos.z);
 		app.stroke(360);
 		app.fill(360);
+		app.rotateX((r * 2) + theta);
+//		app.rotateY((r * 2) + theta);
 		app.rotateZ((r * 2) + theta);
 		app.pushMatrix();
-		app.translate(400, 0);
+		app.translate(500, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);
@@ -126,5 +128,11 @@ public class Estrella extends MasterGeometry {
 	public void mover() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void puntos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
