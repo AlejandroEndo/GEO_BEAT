@@ -34,15 +34,12 @@ public class Sphere extends MasterGeometry {
 	@Override
 	public void draw() {
 
-		if (tam > 50)
-			tam -= 0.5f;
-
 		r += 0.005f;
 		app.pushMatrix();
 		app.translate(pos.x, pos.y, pos.z);
 		app.rotateZ((r * 2) + theta);
 		app.pushMatrix();
-		app.translate(300, 0);
+		app.translate(200, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);

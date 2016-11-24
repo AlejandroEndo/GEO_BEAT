@@ -30,22 +30,25 @@ public class Diamond extends MasterGeometry {
 
 		vel = new PVector(app.random(-5, 5), app.random(-5, 5), app.random(-5, 5));
 		acel = new PVector();
+		
+		this.tam-=10;
 	}
 
 	@Override
 	public void draw() {
-		if (tam > 50)
-			tam -= 0.5f;
 		
 		r += 0.005f;
 		app.pushMatrix();
 		app.translate(pos.x, pos.y, pos.z);
+		app.stroke(360);
+		app.fill(360);
+		app.rotateZ((r * 2) + theta);
+		app.pushMatrix();
+		app.translate(400, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);
-		app.stroke(360);
-		app.fill(360);
-
+		
 		app.beginShape(PConstants.TRIANGLE);
 		// Parte positiva Diamante
 		app.vertex(-tam, -tam, 0);
@@ -83,6 +86,7 @@ public class Diamond extends MasterGeometry {
 
 		app.endShape();
 
+		app.popMatrix();
 		app.popMatrix();
 
 //		orbita();

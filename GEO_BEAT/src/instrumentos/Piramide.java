@@ -35,8 +35,6 @@ public class Piramide extends MasterGeometry {
 	@Override
 	public void draw() {
 		// System.out.println(tam);
-		if (tam > 50)
-			tam -= 0.5f;
 
 		r += 0.005f;
 		app.pushMatrix();
@@ -45,7 +43,7 @@ public class Piramide extends MasterGeometry {
 		app.fill(360);
 		app.rotateZ((r * 2) + theta);
 		app.pushMatrix();
-		app.translate(300, 0);
+		app.translate(200, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);

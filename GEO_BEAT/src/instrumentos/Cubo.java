@@ -42,7 +42,7 @@ public class Cubo extends MasterGeometry {
 		app.stroke(360, 100);
 		app.rotateZ((r * 2) + theta);
 		app.pushMatrix();
-		app.translate(300, 0);
+		app.translate(200, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);

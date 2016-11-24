@@ -6,7 +6,6 @@ public class Helix extends MasterGeometry {
 
 	private PApplet app;
 
-	private PVector pos;
 	private PVector acel;
 
 	private PVector vertices[];
@@ -27,9 +26,6 @@ public class Helix extends MasterGeometry {
 	public Helix(PApplet app, PVector pos, float tam, float theta) {
 		super(app, pos, tam, theta);
 		this.app = app;
-
-		pos = new PVector(app.random(50, app.width - 50), app.random(50, app.height - 50), app.random(-1000, -2450));
-		this.pos = pos;
 
 		// helix values
 		pts = 6;
@@ -52,21 +48,23 @@ public class Helix extends MasterGeometry {
 
 	@Override
 	public void draw() {
-		if (tam > 50)
-			tam -= 0.5f;
 
 		r += 0.005f;
 		app.pushMatrix();
 		app.translate(pos.x, pos.y, pos.z);
+		app.fill(360, 100);
+		app.rotateZ((r * 2) + theta);
+		app.pushMatrix();
+		app.translate(400, 0);
 		app.rotateX(r);
 		app.rotateY(r);
 		app.rotateZ(r);
-		app.fill(360, 100);
 		helixDraw();
 		app.popMatrix();
+		app.popMatrix();
 
-		mover();
-		orbita();
+//		mover();
+//		orbita();
 	}
 
 	private void helixDraw() {

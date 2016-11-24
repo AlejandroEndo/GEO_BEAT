@@ -31,6 +31,7 @@ public class Central {
 
 	public Central(PApplet app) {
 		this.app = app;
+		
 		total = 100;
 
 		globe = new PVector[total + 1][total + 1];
@@ -38,7 +39,7 @@ public class Central {
 		a = 1;
 		b = 1;
 
-		tam = 200;
+		tam = 150;
 	}
 
 	public void draw() {
@@ -54,7 +55,7 @@ public class Central {
 
 		// Variacion de la animacion---------------------------
 		change += 0.01f;// velocidad de animacion
-		m = PApplet.map(PApplet.sin(change), -1, 1, 0, 10);
+		m = PApplet.map(PApplet.sin(change), -1, 1, 4, 10);
 		// ----------------------------------------------------
 
 		// Calcular valores para etablecer los puntos de la esfera

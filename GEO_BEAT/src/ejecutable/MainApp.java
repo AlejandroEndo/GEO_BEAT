@@ -29,7 +29,7 @@ public class MainApp extends PApplet {
 	
 	@Override
 	public void draw() {
-//		background(0);
+		background(0);
 		//lights();
 		logica.draw();
 	}
