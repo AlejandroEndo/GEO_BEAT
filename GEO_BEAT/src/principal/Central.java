@@ -13,7 +13,8 @@ public class Central {
 	// cantidad de divisiones figura
 	private int total;
 	// variable para animacion
-	private float m;
+	private float mA;
+	private float mB;
 	// cambio de color
 	private float off;
 	// radio
@@ -27,7 +28,14 @@ public class Central {
 	// variables formula super shape
 	private float a;
 	private float b;
-	// ----------------------------
+
+	private float nUnoA;
+	private float nDosA;
+	private float nTresA;
+
+	private float nUnoB;
+	private float nDosB;
+	private float nTresB;
 
 	public Central(PApplet app) {
 		this.app = app;
@@ -46,7 +54,7 @@ public class Central {
 		angle += 0.005f;
 		app.pushMatrix();
 		app.fill(360);
-//		app.noStroke();
+		// app.noStroke();
 		app.translate(app.width / 2, app.height / 2, -500);
 		app.rotateX(angle);
 		app.rotateZ(angle);
@@ -62,11 +70,11 @@ public class Central {
 		// ---------------------------------------------------------
 		for (int i = 0; i < total + 1; i++) {
 			float lat = PApplet.map(i, 0, total, -PConstants.HALF_PI, PConstants.HALF_PI);
-			float rDos = superShape(lat, m, 0.20f, 1.70f, 1.70f);
+			float rDos = superShape(lat, mB, nUnoB, nDosB, nTresB);
 
 			for (int j = 0; j < total + 1; j++) {
 				float lon = PApplet.map(j, 0, total, -PConstants.PI, PConstants.PI);
-				float rUno = superShape(lon, m, 0.20f, 1.70f, 1.70f);
+				float rUno = superShape(lon, mA, nUnoA, nDosA, nTresA);
 
 				float x = tam * rUno * PApplet.cos(lon) * rDos * PApplet.cos(lat);
 				float y = tam * rUno * PApplet.sin(lon) * rDos * PApplet.cos(lat);
@@ -116,6 +124,34 @@ public class Central {
 		return r;
 	}
 
+	public void setNa(float nUnoA, float nDosA, float nTresA) {
+		this.nUnoA = nUnoA;
+		this.nDosA = nDosA;
+		this.nTresA = nTresA;
+	}
+
+	public void setNb(float nUnoB, float nDosB, float nTresB) {
+		this.nUnoB = nUnoB;
+		this.nDosB = nDosB;
+		this.nTresB = nTresB;
+	}
+
+	public float getA() {
+		return a;
+	}
+
+	public void setA(float a) {
+		this.a = a;
+	}
+
+	public float getB() {
+		return b;
+	}
+
+	public void setB(float b) {
+		this.b = b;
+	}
+
 	public PVector[][] getGlobe() {
 		return globe;
 	}
@@ -148,12 +184,20 @@ public class Central {
 		this.change = change;
 	}
 
-	public float getM() {
-		return m;
+	public float getmA() {
+		return mA;
 	}
 
-	public void setM(float m) {
-		this.m = m;
+	public void setmA(float mA) {
+		this.mA = mA;
 	}
 
+	public float getmB() {
+		return mB;
+	}
+
+	public void setmB(float mB) {
+		this.mB = mB;
+	}
+	
 }

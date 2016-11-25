@@ -23,7 +23,7 @@ public class MainApp extends PApplet {
 
 	@Override
 	public void setup() {
-		// cam = new PeasyCam(this, 500);
+//		 cam = new PeasyCam(this, 500);
 		colorMode(HSB, 360, 100, 100);
 		myo = new Myo(this, true);
 		logica = new Logica(this, myo);
