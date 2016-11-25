@@ -49,9 +49,11 @@ public class Jarvis implements Runnable {
 				// gesto();
 				// pointer();
 				calcularFisicas();
+				
 			}
 			try {
-				Thread.sleep(60);
+				System.out.println("X: " + orientacion.x + " Y: " + orientacion.y + " Z: " + orientacion.z);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 
 				e.printStackTrace();
@@ -118,6 +120,10 @@ public class Jarvis implements Runnable {
 		acelerometro = myo.getAccelerometer(id);
 		giroscopio = myo.getGyroscope(id);
 		orientacion = myo.getOrientation(id);
+	}
+	
+	public PVector getOrientacion() {
+		return orientacion;
 	}
 
 }

@@ -2,6 +2,8 @@ package ejecutable;
 
 import java.util.ArrayList;
 
+import de.voidplus.myo.*;
+
 import instrumentos.Cruz;
 import instrumentos.Cubo;
 import instrumentos.Diamond;
@@ -10,6 +12,7 @@ import instrumentos.Helix;
 import instrumentos.MasterGeometry;
 import instrumentos.Piramide;
 import instrumentos.Sphere;
+import myo.Jarvis;
 import principal.Central;
 import principal.Escenario;
 import principal.Music;
@@ -27,17 +30,23 @@ public class Logica {
 	private Central central;
 	private Music musica;
 
+	private Jarvis jarvis;
+	private Myo myo;
+
 	private ArrayList<MasterGeometry> instrumentos = new ArrayList<>();
 	private ArrayList<Escenario> electro = new ArrayList<>();
 
 	private int tam;
 
-	public Logica(PApplet app) {
+	public Logica(PApplet app, Myo myo) {
 		this.app = app;
+		this.myo = myo;
 
 		fondo = new Escenario(app, -1000);
 		central = new Central(app);
 		musica = new Music(app);
+
+		jarvis = new Jarvis(myo, app);
 
 		posInicial = new PVector(app.width / 2, app.height / 2, -500);
 
@@ -78,7 +87,7 @@ public class Logica {
 
 		float grosor = PApplet.map(musica.getPromedio(), 0, 93, 1, 10);
 
-		System.out.println(musica.getPromedio());
+		// System.out.println(musica.getPromedio());
 
 		if (central.getM() > 0) {
 			central.setM(central.getM() - 0.5f);
@@ -95,5 +104,13 @@ public class Logica {
 			m.setGrosor(grosor);
 		}
 
+		float altura = PApplet.map(jarvis.getOrientacion().y, 0.4f, 1, 0, -1500);
+
+		app.beginShape(PConstants.QUADS);
+		app.vertex(-200, app.height + 200, 0);
+		app.vertex(-200, app.height + 200, altura);
+		app.vertex(app.width + 200, app.height + 200, altura);
+		app.vertex(app.width + 200, app.height + 200, 0);
+		app.endShape();
 	}
 }
