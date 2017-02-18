@@ -30,8 +30,8 @@ public class Logica {
 	private Central central;
 	private Music musica;
 
-	private Jarvis jarvis;
-	private Myo myo;
+//	private Jarvis jarvis;
+//	private Myo myo;
 
 	private ArrayList<MasterGeometry> instrumentos = new ArrayList<>();
 	private ArrayList<Escenario> electro = new ArrayList<>();
@@ -45,15 +45,15 @@ public class Logica {
 
 	private String instrumento;
 
-	public Logica(PApplet app, Myo myo) {
+	public Logica(PApplet app) {
 		this.app = app;
-		this.myo = myo;
+//		this.myo = myo;
 
 		fondo = new Escenario(app, -1000);
 		central = new Central(app);
 		musica = new Music(app);
 
-		jarvis = new Jarvis(myo, app);
+//		jarvis = new Jarvis(myo, app);
 
 		posInicial = new PVector(app.width / 2, app.height / 2, -500);
 
@@ -113,12 +113,12 @@ public class Logica {
 			m.setGrosor(grosor);
 		}
 
-		float altura = PApplet.map(jarvis.getOrientacion().y, 0.4f, 1, 0, -1500);
+//		float altura = PApplet.map(jarvis.getOrientacion().y, 0.4f, 1, 0, -1500);
 
 		app.beginShape(PConstants.QUADS);
 		app.vertex(-200, app.height + 200, 0);
-		app.vertex(-200, app.height + 200, altura);
-		app.vertex(app.width + 200, app.height + 200, altura);
+//		app.vertex(-200, app.height + 200, altura);
+//		app.vertex(app.width + 200, app.height + 200, altura);
 		app.vertex(app.width + 200, app.height + 200, 0);
 		app.endShape();
 	}

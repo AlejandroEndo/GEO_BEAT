@@ -8,7 +8,7 @@ import processing.core.PApplet;
 public class MainApp extends PApplet {
 
 	private Logica logica;
-	private Myo myo;
+//	private Myo myo;
 	private PeasyCam cam;
 
 	public static void main(String[] args) {
@@ -25,8 +25,8 @@ public class MainApp extends PApplet {
 	public void setup() {
 //		 cam = new PeasyCam(this, 500);
 		colorMode(HSB, 360, 100, 100);
-		myo = new Myo(this, true);
-		logica = new Logica(this, myo);
+//		myo = new Myo(this, true);
+		logica = new Logica(this);
 		background(0);
 	}
 
